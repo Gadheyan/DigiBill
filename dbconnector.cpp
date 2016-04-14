@@ -76,4 +76,25 @@ dbconnector::~dbconnector()
     }
 }
 
+bool dbconnector::insertIntoOwner(const QString& owner_name,const QString& company_name,const QString& address )
+{
+     QSqlQuery insqry;
+     insqry.prepare("INSERT INTO owner(owner_name,company_name,address) VALUES(:owner_name,:company_name,:address)");
+
+
+
+     insqry.bindValue(":owner_name", owner_name);
+     insqry.bindValue(":company_name", company_name);
+     insqry.bindValue(":address", address);
+     if( !insqry.exec() )
+         qDebug() << insqry.lastError();
+     else
+         qDebug() << "inserted";
+
+
+}
+
+
+
+
 
