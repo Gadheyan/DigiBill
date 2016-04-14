@@ -9,6 +9,9 @@ class dbconnector
 public:
     dbconnector();
 
+~dbconnector();
+
+
 private:
     QSqlDatabase digi_db;
 };

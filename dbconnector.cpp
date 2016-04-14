@@ -64,9 +64,16 @@ dbconnector::dbconnector()
         qDebug() << "Table5 created!";
 
 
-
-
-
-
-
 }
+
+
+dbconnector::~dbconnector()
+{
+    if(digi_db.isOpen())
+    {
+        digi_db.close();
+        qDebug() <<"Database closed";
+    }
+}
+
+
