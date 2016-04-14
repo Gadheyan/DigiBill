@@ -2,13 +2,15 @@
 #define DBCONNECTOR_H
 
 #include <QSqlDatabase>
+
+
 class dbconnector
 {
 public:
     dbconnector();
 
 private:
-    QSqlDatabase m_db;
+    QSqlDatabase digi_db;
 };
 
 #endif // DBCONNECTOR_H
