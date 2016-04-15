@@ -6,6 +6,7 @@ ownerCompanyDetailsGetter::ownerCompanyDetailsGetter(QWidget *parent) :
     ui(new Ui::ownerCompanyDetailsGetter)
 {
     ui->setupUi(this);
+
 }
 
 ownerCompanyDetailsGetter::~ownerCompanyDetailsGetter()
