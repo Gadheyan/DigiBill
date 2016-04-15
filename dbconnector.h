@@ -12,6 +12,7 @@ public:
     bool insertIntoProduct(const QString& product_name,const QString& price,const QString& company_id );
 
 
+
      ~dbconnector();
 
 private:
