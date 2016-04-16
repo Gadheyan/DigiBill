@@ -15,11 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     dbconnector.cpp \
-    ownercompanydetailsgetter.cpp
+    ownercompanydetailsgetter.cpp \
+    product_details.cpp
 
 HEADERS  += mainwindow.h \
     dbconnector.h \
-    ownercompanydetailsgetter.h
+    ownercompanydetailsgetter.h \
+    product_details.h
 
 FORMS    += mainwindow.ui \
-    ownercompanydetailsgetter.ui
+    ownercompanydetailsgetter.ui \
+    product_details.ui
