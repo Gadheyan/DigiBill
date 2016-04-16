@@ -2,7 +2,6 @@
 #include <QApplication>
 #include "dbconnector.h"
 #include "ownercompanydetailsgetter.h"
-#include "product_details.h"
 int main(int argc, char *argv[])
 {
     int flag=0;
@@ -13,7 +12,7 @@ int main(int argc, char *argv[])
 
     if(flag==0)
     {
-        product_details dialogue;
+        ownerCompanyDetailsGetter dialogue;
         dialogue.setModal(true);
         dialogue.exec();
 
