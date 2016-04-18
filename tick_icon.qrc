@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file>tick.png</file>
+    </qresource>
+    <qresource prefix="/cancel">
+        <file>cancel.svg</file>
+    </qresource>
+</RCC>

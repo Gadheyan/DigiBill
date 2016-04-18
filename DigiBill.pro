@@ -26,3 +26,6 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     ownercompanydetailsgetter.ui \
     product_details.ui
+
+RESOURCES += \
+    tick_icon.qrc
