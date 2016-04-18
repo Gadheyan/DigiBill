@@ -28,7 +28,7 @@ dbconnector::dbconnector()
 
 
     // Creating table owner
-    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, owner_name VARCHAR(30), company_name VARCHAR(30), address VARCHAR(50))" );
+    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, owner_name VARCHAR(30), company_name VARCHAR(30), email VARCHAR(30), address VARCHAR(50))" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
     else
@@ -56,7 +56,7 @@ dbconnector::dbconnector()
     else
         qDebug() << "Table4 created!";
 
-    // Creating table
+    // Creating table invoice_details
     qry.prepare( "CREATE TABLE IF NOT EXISTS invoice_details (invoice_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, date_of_invoice TEXT, client_id INTEGER, product_id INTEGER, FOREIGN KEY(client_id) REFERENCES client_details(client_id), FOREIGN KEY(product_id) REFERENCES product_details(product_id)  )" );
     if( !qry.exec() )
         qDebug() << qry.lastError();

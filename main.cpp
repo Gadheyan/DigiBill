@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
         dialogue.exec();
 
     }
+    
     dbconnector db;
 
     db.insertIntoOwner("san","fran","cisco");
