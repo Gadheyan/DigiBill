@@ -80,6 +80,9 @@
            <bold>false</bold>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color:#ffffff;</string>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -88,15 +91,12 @@
       </layout>
      </item>
      <item>
-      <layout class="QFormLayout" name="formLayout">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
-       </property>
+      <layout class="QGridLayout" name="gridLayout">
        <property name="leftMargin">
         <number>80</number>
        </property>
        <property name="topMargin">
-        <number>50</number>
+        <number>20</number>
        </property>
        <property name="rightMargin">
         <number>80</number>
@@ -104,6 +104,22 @@
        <property name="bottomMargin">
         <number>20</number>
        </property>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="email"/>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Select</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
@@ -111,10 +127,23 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="company_name">
-         <property name="enabled">
-          <bool>true</bool>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="additional_info"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QTextEdit" name="address"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Logo</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Additional Info</string>
          </property>
         </widget>
        </item>
@@ -125,8 +154,31 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="email"/>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="company_name">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="email_validation">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>64</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_3">
@@ -135,25 +187,12 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QTextEdit" name="address"/>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Additional Info</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="additional_info"/>
-       </item>
       </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <property name="rightMargin">
-        <number>80</number>
+        <number>150</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
@@ -211,23 +250,32 @@
        </item>
       </layout>
      </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>17</width>
+         <height>13</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
     </layout>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButton</tabstop>
+  <tabstop>company_name</tabstop>
+  <tabstop>email</tabstop>
+  <tabstop>address</tabstop>
+  <tabstop>additional_info</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_2</tabstop>
+ </tabstops>
  <resources>
   <include location="tick_icon.qrc"/>
  </resources>
