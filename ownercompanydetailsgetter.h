@@ -15,6 +15,9 @@ public:
     explicit ownerCompanyDetailsGetter(QWidget *parent = 0);
     ~ownerCompanyDetailsGetter();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::ownerCompanyDetailsGetter *ui;
 };
