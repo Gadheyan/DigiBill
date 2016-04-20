@@ -28,7 +28,7 @@ dbconnector::dbconnector()
 
 
     // Creating table owner
-    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30), email VARCHAR(30), address VARCHAR(50), additional_info VARCHAR(500))" );
+    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, owner_name VARCHAR(30), company_name VARCHAR(30), email VARCHAR(30), address VARCHAR(50))" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
     else
@@ -76,22 +76,20 @@ dbconnector::~dbconnector()
     }
 }
 
-bool dbconnector::insertIntoOwner(const QString& company_name,const QString& email,const QString& address ,const QString& additional_info )
+bool dbconnector::insertIntoOwner(const QString& owner_name,const QString& company_name,const QString& email,const QString& address )
 {
      QSqlQuery insqry;
-     insqry.prepare("INSERT INTO owner(company_name,email,address,additional_info) VALUES(:company_name,:email,:address,:additional_info)");
+     insqry.prepare("INSERT INTO owner(owner_name,company_name,email,address) VALUES ('"+owner_name+"','"+company_name+"','"+email+"','"+address+"')");
 
 
 
 
-     insqry.bindValue(":company_name", company_name);
-     insqry.bindValue(":email", email);
-     insqry.bindValue(":address", address);
-     insqry.bindValue(":additional_info", additional_info);
      if( !insqry.exec() )
          qDebug() << insqry.lastError();
      else
-         qDebug() << company_name;
+
+         qDebug() << "inserted into owner";
+
 
 
 }
@@ -100,16 +98,17 @@ bool dbconnector::insertIntoOwner(const QString& company_name,const QString& ema
 
 bool dbconnector::insertIntoProduct(const QString& product_name,const QString& price,const QString& company_id )
 {
-    QSqlQuery insqry;
-         insqry.prepare("INSERT INTO product_details(product_name,price,company_id) VALUES ('"+product_name+"','"+price+"','"+company_id+"')");
+     QSqlQuery insqry;
+     insqry.prepare("INSERT INTO product_details(product_name,price,company_id) VALUES ('"+product_name+"','"+price+"','"+company_id+"')");
 
 
 
 
-         if( !insqry.exec() )
-             qDebug() << insqry.lastError();
-         else
-             qDebug() << "inserted into product yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+     if( !insqry.exec() )
+         qDebug() << insqry.lastError();
+     else
+         qDebug() << "inserted into product yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
 
 }
 

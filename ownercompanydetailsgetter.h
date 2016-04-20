@@ -16,12 +16,9 @@ public:
     ~ownerCompanyDetailsGetter();
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
 
-    void on_email_textChanged(const QString &arg1);
-
+    void on_pushButton_clicked();
 
 private:
     Ui::ownerCompanyDetailsGetter *ui;
