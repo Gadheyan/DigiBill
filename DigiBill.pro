@@ -28,4 +28,5 @@ FORMS    += mainwindow.ui \
     product_details.ui
 
 RESOURCES += \
-    tick_icon.qrc
+    tick_icon.qrc \
+    buttonicon.qrc

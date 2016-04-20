@@ -91,7 +91,7 @@ bool dbconnector::insertIntoOwner(const QString& company_name,const QString& ema
      if( !insqry.exec() )
          qDebug() << insqry.lastError();
      else
-         qDebug() << "inserted";
+         qDebug() << company_name;
 
 
 }
@@ -100,19 +100,16 @@ bool dbconnector::insertIntoOwner(const QString& company_name,const QString& ema
 
 bool dbconnector::insertIntoProduct(const QString& product_name,const QString& price,const QString& company_id )
 {
-     QSqlQuery insqry;
-     insqry.prepare("INSERT INTO product_details(product_name,price,company_id) VALUES(:product_name,:price,:company_id)");
+    QSqlQuery insqry;
+         insqry.prepare("INSERT INTO product_details(product_name,price,company_id) VALUES ('"+product_name+"','"+price+"','"+company_id+"')");
 
 
 
-     insqry.bindValue(":product_name", product_name);
-     insqry.bindValue(":price", price);
-     insqry.bindValue(":company_id", company_id);
-     if( !insqry.exec() )
-         qDebug() << insqry.lastError();
-     else
-         qDebug() << "inserted into product";
 
+         if( !insqry.exec() )
+             qDebug() << insqry.lastError();
+         else
+             qDebug() << "inserted into product yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
 }
 

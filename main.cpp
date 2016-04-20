@@ -10,14 +10,7 @@ int main(int argc, char *argv[])
     w.show();
 
 
-    if(flag==0)
-    {
-        ownerCompanyDetailsGetter dialogue;
-        dialogue.setModal(true);
-        dialogue.exec();
 
-    }
-    
 
 
     return a.exec();

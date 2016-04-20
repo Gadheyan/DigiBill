@@ -15,6 +15,11 @@ public:
     explicit product_details(QWidget *parent = 0);
     ~product_details();
 
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::product_details *ui;
 };
