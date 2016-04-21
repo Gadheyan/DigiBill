@@ -12,6 +12,7 @@ class ownerCompanyDetailsGetter : public QDialog
     Q_OBJECT
 
 public:
+    QByteArray inByteArray;
     explicit ownerCompanyDetailsGetter(QWidget *parent = 0);
     ~ownerCompanyDetailsGetter();
 
@@ -22,6 +23,8 @@ private slots:
 
     void on_email_textChanged(const QString &arg1);
 
+
+    void on_pushButton_3_clicked();
 
 private:
     Ui::ownerCompanyDetailsGetter *ui;
