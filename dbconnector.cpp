@@ -28,7 +28,7 @@ dbconnector::dbconnector()
 
 
     // Creating table owner
-    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, owner_name VARCHAR(30), company_name VARCHAR(30), email VARCHAR(30), address VARCHAR(50))" );
+    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, owner_name VARCHAR(30), company_name VARCHAR(30), email VARCHAR(30), address VARCHAR(50), logo BLOB)" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
     else
@@ -76,12 +76,16 @@ dbconnector::~dbconnector()
     }
 }
 
-bool dbconnector::insertIntoOwner(const QString& owner_name,const QString& company_name,const QString& email,const QString& address )
+bool dbconnector::insertIntoOwner(const QString& owner_name,const QString& company_name,const QString& email,const QString& address,const QByteArray& inByteArray )
 {
-     QSqlQuery insqry;
-     insqry.prepare("INSERT INTO owner(owner_name,company_name,email,address) VALUES ('"+owner_name+"','"+company_name+"','"+email+"','"+address+"')");
+    QSqlQuery insqry;
+    insqry.prepare("INSERT INTO owner(owner_name,company_name,email,address,logo) VALUES (:owner_name,:company_name,:email,:address,:inByteArray)");
 
-
+    insqry.bindValue( ":owner_name", owner_name );
+     insqry.bindValue( ":company_name", company_name );
+     insqry.bindValue( ":email", email );
+     insqry.bindValue( ":address", address );
+     insqry.bindValue( ":inByteArray", inByteArray );
 
 
      if( !insqry.exec() )

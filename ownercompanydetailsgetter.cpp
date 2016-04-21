@@ -4,6 +4,9 @@
 #include "QMessageBox"
 #include <QFileDialog>
 #include <QRegularExpression>
+#include <QDir>
+
+
 
 
 ownerCompanyDetailsGetter::ownerCompanyDetailsGetter(QWidget *parent) :
@@ -28,7 +31,7 @@ void ownerCompanyDetailsGetter::on_pushButton_clicked()
     email = ui->email->text();
     address = ui->address->toPlainText();
     additional_info = ui->additional_info->text();
-    db.insertIntoOwner(company_name,email,address,additional_info);
+    db.insertIntoOwner(company_name,email,address,additional_info,inByteArray);
     QMessageBox::information(
         this,
         tr("Saved"),
@@ -63,6 +66,26 @@ void ownerCompanyDetailsGetter::on_email_textChanged(const QString &arg)
         ui->email_validation->setStyleSheet("QLabel {  color : green; }");
         ui->email_validation->setText("valid");
     }
+
+
+}
+
+void ownerCompanyDetailsGetter::on_pushButton_3_clicked()
+{
+
+           QString filepath = QFileDialog::getOpenFileName(
+               this,
+               tr("Select Logo"),
+               QDir::homePath(),
+               "All files(*.*)"
+
+               );
+
+           QMessageBox::information(this,tr("title"),filepath);
+            QFile file(filepath);
+            if (!file.open(QIODevice::ReadOnly)) return;
+           inByteArray = file.readAll();
+
 
 
 }
