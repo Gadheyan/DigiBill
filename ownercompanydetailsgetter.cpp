@@ -50,7 +50,7 @@ void ownerCompanyDetailsGetter::on_pushButton_2_clicked()
     this->close();
 }
 
-void ownerCompanyDetailsGetter::on_email_textChanged(const QString &arg)
+void ownerCompanyDetailsGetter::on_email_textChanged()
 {
     QString email;
     email = ui->email->text();
@@ -81,7 +81,7 @@ void ownerCompanyDetailsGetter::on_pushButton_3_clicked()
 
                );
 
-           QMessageBox::information(this,tr("title"),filepath);
+
             QFile file(filepath);
             if (!file.open(QIODevice::ReadOnly)) return;
            inByteArray = file.readAll();
