@@ -9,6 +9,13 @@
 #include <QFileInfo>
 
 
+
+
+
+
+
+
+
 dbconnector::dbconnector()
 {
     digi_db = QSqlDatabase::addDatabase("QSQLITE");
@@ -65,6 +72,13 @@ dbconnector::dbconnector()
 
 
 }
+
+
+
+
+
+
+
 
 
 dbconnector::~dbconnector()

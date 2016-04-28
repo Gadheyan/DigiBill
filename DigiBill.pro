@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     dbconnector.cpp \
     ownercompanydetailsgetter.cpp \
-    product_details.cpp
+    product_details.cpp \
+    currencydb.cpp
 
 HEADERS  += mainwindow.h \
     dbconnector.h \
     ownercompanydetailsgetter.h \
-    product_details.h
+    product_details.h \
+    currencydb.h
 
 FORMS    += mainwindow.ui \
     ownercompanydetailsgetter.ui \
