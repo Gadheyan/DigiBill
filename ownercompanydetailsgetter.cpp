@@ -8,6 +8,9 @@
 #include <QDir>
 #include <QSqlQueryModel>
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
+#include <QSqlRecord>
 
 
 
@@ -53,9 +56,18 @@ void ownerCompanyDetailsGetter::on_pushButton_clicked()
 
 
 void ownerCompanyDetailsGetter::add_item_to_comboBox(){
-  currencydb db;
+  currencydb currencyobj;
   QSqlQueryModel* modal = new QSqlQueryModel();
-  QSqlQuery qry;
+  QSqlQuery* qry = new QSqlQuery(currencyobj.currency) ;
+
+  qry->exec("select country from currency");
+
+  modal->setQuery(*qry);
+  ui->comboBox->setModel(modal);
+  //qDebug() << qry->lastError().text();
+  //qDebug() <<"Flag:" <<flag;
+
+
 
 
 }
