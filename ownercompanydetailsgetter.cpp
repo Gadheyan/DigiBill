@@ -1,11 +1,13 @@
 #include "ownercompanydetailsgetter.h"
 #include "ui_ownercompanydetailsgetter.h"
 #include "dbconnector.h"
+#include "currencydb.h"
 #include "QMessageBox"
 #include <QFileDialog>
 #include <QRegularExpression>
 #include <QDir>
-
+#include <QSqlQueryModel>
+#include <QSqlQuery>
 
 
 
@@ -14,6 +16,10 @@ ownerCompanyDetailsGetter::ownerCompanyDetailsGetter(QWidget *parent) :
     ui(new Ui::ownerCompanyDetailsGetter)
 {
     ui->setupUi(this);
+    add_item_to_comboBox();
+
+
+
 
 }
 
@@ -44,6 +50,16 @@ void ownerCompanyDetailsGetter::on_pushButton_clicked()
     this->close();
 
 }
+
+
+void ownerCompanyDetailsGetter::add_item_to_comboBox(){
+  currencydb db;
+  QSqlQueryModel* modal = new QSqlQueryModel();
+  QSqlQuery qry;
+
+
+}
+
 
 void ownerCompanyDetailsGetter::on_pushButton_2_clicked()
 {

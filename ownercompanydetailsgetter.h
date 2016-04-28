@@ -26,6 +26,9 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+
+    void add_item_to_comboBox();
+
 private:
     Ui::ownerCompanyDetailsGetter *ui;
 };
