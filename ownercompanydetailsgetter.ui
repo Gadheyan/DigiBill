@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>683</width>
-    <height>441</height>
+    <height>521</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -89,7 +89,19 @@
     </layout>
    </item>
    <item>
-    <layout class="QGridLayout" name="gridLayout">
+    <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1,1,1">
+     <property name="leftMargin">
+      <number>80</number>
+     </property>
+     <property name="topMargin">
+      <number>20</number>
+     </property>
+     <property name="rightMargin">
+      <number>80</number>
+     </property>
+     <property name="bottomMargin">
+      <number>30</number>
+     </property>
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
@@ -97,7 +109,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1" rowspan="2">
+     <item row="0" column="1">
       <widget class="QLineEdit" name="company_name">
        <property name="enabled">
         <bool>true</bool>
@@ -105,13 +117,60 @@
       </widget>
      </item>
      <item row="0" column="3">
+      <widget class="QLabel" name="label_13">
+       <property name="text">
+        <string>TIN</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLineEdit" name="tin"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Country</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBox"/>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Additional Info</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLineEdit" name="additional_info"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Address</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Currency</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="4">
+      <widget class="QComboBox" name="comboBox_currency"/>
+     </item>
+     <item row="3" column="3">
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Logo</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="4">
+     <item row="3" column="4">
       <widget class="QPushButton" name="pushButton_3">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -124,20 +183,37 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="4" rowspan="2">
-      <widget class="QLineEdit" name="additional_info"/>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>City</string>
+       </property>
+      </widget>
      </item>
-     <item row="2" column="0">
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="city"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>state</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="state"/>
+     </item>
+     <item row="6" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Email</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="6" column="1">
       <widget class="QLineEdit" name="email"/>
      </item>
-     <item row="2" column="2">
+     <item row="6" column="2">
       <widget class="QLabel" name="email_validation">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -156,43 +232,40 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="3">
-      <widget class="QLabel" name="label_5">
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_10">
        <property name="text">
-        <string>Additional Info</string>
+        <string>Phone</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_7">
+     <item row="7" column="1">
+      <widget class="QLineEdit" name="phone"/>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="label_12">
        <property name="text">
-        <string>Country</string>
+        <string>Website</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QComboBox" name="comboBox"/>
+     <item row="8" column="1">
+      <widget class="QLineEdit" name="website"/>
      </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Address</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
+     <item row="2" column="1" rowspan="2">
       <widget class="QTextEdit" name="address"/>
      </item>
     </layout>
    </item>
    <item>
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <property name="rightMargin">
-      <number>150</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
      <item>
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
@@ -200,14 +273,17 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>348</width>
-         <height>20</height>
+         <width>458</width>
+         <height>17</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="rightMargin">
+        <number>50</number>
+       </property>
        <item>
         <widget class="QPushButton" name="pushButton_2">
          <property name="sizePolicy">
@@ -253,8 +329,8 @@
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>17</width>
-       <height>31</height>
+       <width>20</width>
+       <height>42</height>
       </size>
      </property>
     </spacer>
@@ -262,13 +338,20 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>pushButton</tabstop>
-  <tabstop>company_name</tabstop>
-  <tabstop>email</tabstop>
+  <tabstop>comboBox</tabstop>
   <tabstop>address</tabstop>
+  <tabstop>city</tabstop>
+  <tabstop>state</tabstop>
+  <tabstop>email</tabstop>
+  <tabstop>phone</tabstop>
+  <tabstop>website</tabstop>
+  <tabstop>tin</tabstop>
   <tabstop>additional_info</tabstop>
+  <tabstop>comboBox_currency</tabstop>
+  <tabstop>company_name</tabstop>
   <tabstop>pushButton_3</tabstop>
   <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton</tabstop>
  </tabstops>
  <resources>
   <include location="tick_icon.qrc"/>
