@@ -12,7 +12,7 @@ class ownerCompanyDetailsGetter : public QDialog
     Q_OBJECT
 
 public:
-    QByteArray inByteArray;
+    QByteArray logoByteArray;
     explicit ownerCompanyDetailsGetter(QWidget *parent = 0);
     ~ownerCompanyDetailsGetter();
 
@@ -28,6 +28,9 @@ private slots:
 
 
     void add_item_to_comboBox();
+    void add_item_to_comboBox_currency();
+
+    void on_comboBox_activated(const QString &arg1);
 
 private:
     Ui::ownerCompanyDetailsGetter *ui;

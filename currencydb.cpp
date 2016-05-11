@@ -15,13 +15,17 @@ currencydb::currencydb()
 
     currency = QSqlDatabase::addDatabase("QSQLITE");
     currency.setDatabaseName("currency.sqlite");
-    if (!currency.open())
+    if(!currency.isOpen())
     {
-        qDebug() << "Error: connection with database fail";
-    }
-    else
-    {
-        qDebug() << "Database currency: connection ok";
+
+        if (!currency.open())
+        {
+            qDebug() << "Error: connection with database fail";
+        }
+        else
+        {
+            qDebug() << "Database currency: connection ok";
+        }
     }
 }
 
@@ -31,7 +35,7 @@ currencydb::~currencydb()
         if(currency.isOpen())
         {
             currency.close();
-            qDebug() <<"Database closed";
+            qDebug() <<"Database currency closed";
         }
 
 }

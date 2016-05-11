@@ -20,7 +20,7 @@ ownerCompanyDetailsGetter::ownerCompanyDetailsGetter(QWidget *parent) :
 {
     ui->setupUi(this);
     add_item_to_comboBox();
-
+    add_item_to_comboBox_currency();
 
 
 
@@ -35,12 +35,19 @@ void ownerCompanyDetailsGetter::on_pushButton_clicked()
 {
 
     dbconnector db;
-    QString company_name,email,address,additional_info;
+    QString company_name,country,address,city,state,email,phone,website,tin,currency,additional_info;
     company_name = ui->company_name->text();
-    email = ui->email->text();
+    country = ui->comboBox->currentText();
     address = ui->address->toPlainText();
+    city = ui->city->text();
+    state = ui->state->text();
+    email = ui->email->text();
+    phone = ui->phone->text();
+    website = ui->website->text();
+    tin = ui->tin->text();
+    currency = ui->comboBox_currency->currentText();
     additional_info = ui->additional_info->text();
-    db.insertIntoOwner(company_name,email,address,additional_info,inByteArray);
+    db.insertIntoOwner(company_name,country,address,city,state,email,phone,website,tin,currency,additional_info,logoByteArray);
     QMessageBox::information(
         this,
         tr("Saved"),
@@ -64,11 +71,26 @@ void ownerCompanyDetailsGetter::add_item_to_comboBox(){
 
   modal->setQuery(*qry);
   ui->comboBox->setModel(modal);
+
+
   //qDebug() << qry->lastError().text();
   //qDebug() <<"Flag:" <<flag;
 
 
 
+
+}
+
+void ownerCompanyDetailsGetter::add_item_to_comboBox_currency(){
+
+    currencydb currencyobj;
+    QSqlQueryModel* modal = new QSqlQueryModel();
+    QSqlQuery* qry = new QSqlQuery(currencyobj.currency) ;
+
+    qry->exec("select currency from currency");
+
+    modal->setQuery(*qry);
+    ui->comboBox_currency->setModel(modal);
 
 }
 
@@ -112,7 +134,33 @@ void ownerCompanyDetailsGetter::on_pushButton_3_clicked()
 
             QFile file(filepath);
             if (!file.open(QIODevice::ReadOnly)) return;
-           inByteArray = file.readAll();
+           logoByteArray = file.readAll();
+
+
+
+}
+
+void ownerCompanyDetailsGetter::on_comboBox_activated(const QString &arg1)
+{
+    QString cur_item_in_combo = ui->comboBox->currentText();
+    currencydb currencyobj;
+    QString currency_label_set_value;
+    QSqlRecord record;
+
+
+    QSqlQuery* qry = new QSqlQuery(currencyobj.currency);
+
+   bool flag =  qry->exec("select currency from currency where country='"+cur_item_in_combo+"'");
+
+   while( qry->next() ){
+    record=qry->record();
+    currency_label_set_value=record.value("currency").toString();
+   }
+ //qDebug()<<"Currency="<<currency_label_set_value;
+
+   ui->comboBox_currency->setCurrentIndex(ui->comboBox_currency->findText(currency_label_set_value));
+
+
 
 
 
