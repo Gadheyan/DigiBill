@@ -9,10 +9,19 @@
 #include <QFileInfo>
 
 
+
+
+
+
+
+
+
 dbconnector::dbconnector()
 {
+
     digi_db = QSqlDatabase::addDatabase("QSQLITE");
     digi_db.setDatabaseName( "digibill.db" );
+    if(!digi_db.isOpen()){
 
     if (!digi_db.open())
     {
@@ -20,15 +29,16 @@ dbconnector::dbconnector()
     }
     else
     {
-        qDebug() << "Database: connection ok";
+        qDebug() << "Database main: connection ok";
     }
 
 
+    }
     QSqlQuery qry;
 
 
     // Creating table owner
-    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, owner_name VARCHAR(30), company_name VARCHAR(30), email VARCHAR(30), address VARCHAR(50), logo BLOB)" );
+    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30), country VARCHAR(30), address VARCHAR(100), city VARCHAR(30), state VARCHAR(30), email VARCHAR(30), phone VARCHAR(30), website VARCHAR(30),  tin VARCHAR(30), currency VARCHAR(30), additional_info VARCHAR(30), logo BLOB)" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
     else
@@ -67,25 +77,40 @@ dbconnector::dbconnector()
 }
 
 
+
+
+
+
+
+
+
 dbconnector::~dbconnector()
 {
     if(digi_db.isOpen())
     {
         digi_db.close();
-        qDebug() <<"Database closed";
+        qDebug() <<"Database main closed";
     }
 }
 
-bool dbconnector::insertIntoOwner(const QString& owner_name,const QString& company_name,const QString& email,const QString& address,const QByteArray& inByteArray )
+bool dbconnector::insertIntoOwner(const QString& company_name, const QString& country,const QString& address,const QString& city,const QString& state,const QString& email,const QString& phone,const QString& website,const QString& tin,const QString& currency,const QString& additional_info,const QByteArray& logoByteArray )
 {
     QSqlQuery insqry;
-    insqry.prepare("INSERT INTO owner(owner_name,company_name,email,address,logo) VALUES (:owner_name,:company_name,:email,:address,:inByteArray)");
+    insqry.prepare("INSERT INTO owner(company_name,country,address,city,state,email,phone,website,tin,currency,additional_info,logo) VALUES (:company_name,:country,:address,:city,:state,:email,:phone,:website,:tin,:currency,:additional_info,:logoByteArray)");
 
-    insqry.bindValue( ":owner_name", owner_name );
+
      insqry.bindValue( ":company_name", company_name );
-     insqry.bindValue( ":email", email );
+     insqry.bindValue( ":country", country );
      insqry.bindValue( ":address", address );
-     insqry.bindValue( ":inByteArray", inByteArray );
+     insqry.bindValue( ":city", city );
+     insqry.bindValue( ":state", state );
+     insqry.bindValue( ":email", email );
+     insqry.bindValue( ":phone", phone );\
+     insqry.bindValue( ":website", website );
+     insqry.bindValue( ":tin", tin );
+     insqry.bindValue( ":currency", currency );
+     insqry.bindValue( ":additional_info", additional_info );
+     insqry.bindValue( ":logoByteArray", logoByteArray );
 
 
      if( !insqry.exec() )
