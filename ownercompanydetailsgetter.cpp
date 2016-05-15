@@ -63,6 +63,8 @@ void ownerCompanyDetailsGetter::on_pushButton_clicked()
 
 
 void ownerCompanyDetailsGetter::add_item_to_comboBox(){
+
+
   currencydb currencyobj;
   QSqlQueryModel* modal = new QSqlQueryModel();
   QSqlQuery* qry = new QSqlQuery(currencyobj.currency) ;

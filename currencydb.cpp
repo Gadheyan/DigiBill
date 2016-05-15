@@ -13,7 +13,27 @@
 currencydb::currencydb()
 {
 
-    currency = QSqlDatabase::addDatabase("QSQLITE");
+    if(QSqlDatabase::contains("currencyconnection")){
+        currency = QSqlDatabase::database("currencyconnection");
+        currency.setDatabaseName("currency.sqlite");
+        if(!currency.isOpen())
+        {
+
+            if (!currency.open())
+            {
+                qDebug() << "Error: connection with database fail";
+            }
+            else
+            {
+                qDebug() << "Database currency: connection ok";
+            }
+        }
+
+    }
+    else{
+
+
+    currency = QSqlDatabase::addDatabase("QSQLITE","currencyconnection");
     currency.setDatabaseName("currency.sqlite");
     if(!currency.isOpen())
     {
@@ -27,6 +47,7 @@ currencydb::currencydb()
             qDebug() << "Database currency: connection ok";
         }
     }
+        }
 }
 
 currencydb::~currencydb()
