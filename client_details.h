@@ -15,6 +15,13 @@ public:
     explicit client_details(QWidget *parent = 0);
     ~client_details();
 
+private slots:
+    void add_items_to_countrycombobox();
+
+    void on_pushButton_2_clicked();
+
+    void on_cancel_button_clicked();
+
 private:
     Ui::client_details *ui;
 };

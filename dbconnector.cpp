@@ -60,7 +60,7 @@ dbconnector::dbconnector()
 
 
     // Creating table client_details
-    qry.prepare( "CREATE TABLE IF NOT EXISTS client_details (client_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, client_name VARCHAR(30), address VARCHAR(50), phone VARCHAR(15))" );
+    qry.prepare( "CREATE TABLE IF NOT EXISTS client_details (client_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30),contact_name VARCHAR(40), country VARCHAR(30), address VARCHAR(50),city VARCHAR(30), state VARCHAR(30), email VARCHAR(80), phone VARCHAR(15), website VARCHAR(80), tin VARCHAR(30)  )" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
     else
@@ -115,12 +115,41 @@ bool dbconnector::insertIntoOwner(const QString& company_name, const QString& co
 
      if( !insqry.exec() )
          qDebug() << insqry.lastError();
-     else
+     else{
 
          qDebug() << "inserted into owner";
 
+}
+
+return true;
+}
 
 
+
+
+bool dbconnector::insertIntoClient(const QString& company_name, const QString& country,const QString& contact_name,const QString& address,const QString& city,const QString& state,const QString& email,const QString& phone,const QString& website,const QString& tin)
+{
+    QSqlQuery inscqry;
+    inscqry.prepare("INSERT INTO client_details(company_name,country,contact_name,address,city,state,email,phone,website,tin) VALUES (:company_name,:country,:contact_name,:address,:city,:state,:email,:phone,:website,:tin)");
+    inscqry.bindValue( ":company_name", company_name );
+    inscqry.bindValue( ":country", country );
+    inscqry.bindValue( ":contact_name", contact_name );
+    inscqry.bindValue( ":address", address );
+    inscqry.bindValue( ":city", city );
+    inscqry.bindValue( ":state", state );
+    inscqry.bindValue( ":email", email );
+    inscqry.bindValue( ":phone", phone );\
+    inscqry.bindValue( ":website", website );
+    inscqry.bindValue( ":tin", tin );
+    if( !inscqry.exec() )
+        qDebug() << inscqry.lastError();
+    else
+    {
+
+        qDebug() << "inserted into client";
+
+}
+return true;
 }
 
 
@@ -135,8 +164,10 @@ bool dbconnector::insertIntoProduct(const QString& product_name,const QString& p
 
      if( !insqry.exec() )
          qDebug() << insqry.lastError();
-     else
+     else{
          qDebug() << "inserted into product yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+     }
+     return true;
 
 
 }
