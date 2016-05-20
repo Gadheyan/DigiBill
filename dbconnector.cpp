@@ -7,8 +7,7 @@
 #include <QSqlRecord>
 #include <QtDebug>
 #include <QFileInfo>
-
-
+#include <QFile>
 
 
 
@@ -18,66 +17,79 @@
 
 dbconnector::dbconnector()
 {
-
-    digi_db = QSqlDatabase::addDatabase("QSQLITE");
-    digi_db.setDatabaseName( "digibill.db" );
-    if(!digi_db.isOpen()){
-
-    if (!digi_db.open())
-    {
-        qDebug() << "Error: connection with database fail";
-    }
-    else
-    {
-        qDebug() << "Database main: connection ok";
-    }
-
-
-    }
+    digi_db = openDb("QSQLITE","digibill.db");
     QSqlQuery qry;
 
 
-    // Creating table owner
-    qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30), country VARCHAR(30), address VARCHAR(100), city VARCHAR(30), state VARCHAR(30), email VARCHAR(30), phone VARCHAR(30), website VARCHAR(30),  tin VARCHAR(30), currency VARCHAR(30), additional_info VARCHAR(30), logo BLOB)" );
-    if( !qry.exec() )
-        qDebug() << qry.lastError();
-    else
-        qDebug() << "Table1 created!";
+            // Creating table owner
+            qry.prepare( "CREATE TABLE IF NOT EXISTS owner (owner_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30), country VARCHAR(30), address VARCHAR(100), city VARCHAR(30), state VARCHAR(30), email VARCHAR(30), phone VARCHAR(30), website VARCHAR(30),  tin VARCHAR(30), currency VARCHAR(30), additional_info VARCHAR(30), logo BLOB)" );
+            if( !qry.exec() )
+                qDebug() << qry.lastError();
+            else
+                qDebug() << "Table1 created!";
 
-    // Creating table company_details
-    qry.prepare( "CREATE TABLE IF NOT EXISTS company_details (company_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30), contact VARCHAR(15) )" );
-    if( !qry.exec() )
-        qDebug() << qry.lastError();
-    else
-        qDebug() << "Table2 created!";
+            // Creating table company_details
+            qry.prepare( "CREATE TABLE IF NOT EXISTS company_details (company_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30), contact VARCHAR(15) )" );
+            if( !qry.exec() )
+                qDebug() << qry.lastError();
+            else
+                qDebug() << "Table2 created!";
 
-    // Creating table product_details
-    qry.prepare( "CREATE TABLE IF NOT EXISTS product_details (product_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, product_name VARCHAR(30), price FLOAT, company_id INTEGER, FOREIGN KEY(company_id) REFERENCES company_details(company_id)  )" );
-    if( !qry.exec() )
-        qDebug() << qry.lastError();
-    else
-        qDebug() << "Table3 created!";
+            // Creating table product_details
+            qry.prepare( "CREATE TABLE IF NOT EXISTS product_details (product_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, product_name VARCHAR(30), price FLOAT, company_id INTEGER, FOREIGN KEY(company_id) REFERENCES company_details(company_id)  )" );
+            if( !qry.exec() )
+                qDebug() << qry.lastError();
+            else
+                qDebug() << "Table3 created!";
 
 
-    // Creating table client_details
-    qry.prepare( "CREATE TABLE IF NOT EXISTS client_details (client_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30),contact_name VARCHAR(40), country VARCHAR(30), address VARCHAR(50),city VARCHAR(30), state VARCHAR(30), email VARCHAR(80), phone VARCHAR(15), website VARCHAR(80), tin VARCHAR(30)  )" );
-    if( !qry.exec() )
-        qDebug() << qry.lastError();
-    else
-        qDebug() << "Table4 created!";
+            // Creating table client_details
+            qry.prepare( "CREATE TABLE IF NOT EXISTS client_details (client_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, company_name VARCHAR(30),contact_name VARCHAR(40), country VARCHAR(30), address VARCHAR(50),city VARCHAR(30), state VARCHAR(30), email VARCHAR(80), phone VARCHAR(15), website VARCHAR(80), tin VARCHAR(30)  )" );
+            if( !qry.exec() )
+                qDebug() << qry.lastError();
+            else
+                qDebug() << "Table4 created!";
 
-    // Creating table invoice_details
-    qry.prepare( "CREATE TABLE IF NOT EXISTS invoice_details (invoice_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, date_of_invoice TEXT, client_id INTEGER, product_id INTEGER, FOREIGN KEY(client_id) REFERENCES client_details(client_id), FOREIGN KEY(product_id) REFERENCES product_details(product_id)  )" );
-    if( !qry.exec() )
-        qDebug() << qry.lastError();
-    else
-        qDebug() << "Table5 created!";
-
+            // Creating table invoice_details
+            qry.prepare( "CREATE TABLE IF NOT EXISTS invoice_details (invoice_id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, date_of_invoice TEXT, client_id INTEGER, product_id INTEGER, FOREIGN KEY(client_id) REFERENCES client_details(client_id), FOREIGN KEY(product_id) REFERENCES product_details(product_id)  )" );
+            if( !qry.exec() )
+                qDebug() << qry.lastError();
+            else
+                qDebug() << "Table5 created!";
 
 }
 
 
 
+
+QSqlDatabase dbconnector::openDb(const QString &driver, const QString &name) const
+{
+    QSqlDatabase db;
+
+    // contains() default argument is initialized to default connection
+    if (QSqlDatabase::contains())
+    {
+        db = QSqlDatabase::database(QLatin1String(QSqlDatabase::defaultConnection), false);
+    }
+    else
+    {
+        db = QSqlDatabase::addDatabase(driver.toUpper());
+    }
+
+    db.setDatabaseName(name);
+
+    if (!db.isValid())
+    {
+        // Log error (last error: db.lastError().text()) and throw exception
+    }
+
+    if (!db.open())
+    {
+        // Log error (last error: db.lastError().text()) and throw exception
+    }
+     qDebug() <<"Database main open";
+    return db;
+}
 
 
 
