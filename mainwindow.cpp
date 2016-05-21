@@ -3,6 +3,7 @@
 #include "product_details.h"
 #include "ownercompanydetailsgetter.h"
 #include "client_details.h"
+#include "client_table_view.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,7 +34,7 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    client_details dialogue2;
+    client_table_view dialogue2;
    dialogue2.setModal(true);
     dialogue2.exec();
 }
