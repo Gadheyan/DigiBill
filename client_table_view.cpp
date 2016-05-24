@@ -15,7 +15,7 @@ client_table_view::client_table_view(QWidget *parent) :
     QSqlQueryModel* modal = new QSqlQueryModel();
     QSqlQuery* qry = new QSqlQuery(db.digi_db) ;
 
-    qry->exec("select * from client_details");
+    qry->exec("select company_name,contact_name,address,email,phone from client_details");
 
     modal->setQuery(*qry);
     ui->client_table->setModel(modal);
