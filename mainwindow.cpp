@@ -35,6 +35,6 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_pushButton_4_clicked()
 {
     client_table_view dialogue2;
-   dialogue2.setModal(true);
+    dialogue2.setModal(true);
     dialogue2.exec();
 }

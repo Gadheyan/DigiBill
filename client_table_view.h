@@ -15,6 +15,11 @@ public:
     explicit client_table_view(QWidget *parent = 0);
     ~client_table_view();
 
+private slots:
+    void on_client_table_doubleClicked(const QModelIndex &index);
+
+    void on_delete_client_clicked();
+
 private:
     Ui::client_table_view *ui;
 };
