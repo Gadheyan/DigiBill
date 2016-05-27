@@ -13,6 +13,11 @@ class client_details : public QDialog
 
 public:
     explicit client_details(QWidget *parent = 0);
+
+    void setTitleForWindow(const QString& title);
+
+    void populateData(const QString& client_id);
+
     ~client_details();
 
 private slots:
@@ -22,8 +27,19 @@ private slots:
 
     void on_cancel_button_clicked();
 
+
+
+
+
+
+
 private:
     Ui::client_details *ui;
+
+    QString window_title;
+    QString current_client_id;
+
+
 };
 
 #endif // CLIENT_DETAILS_H

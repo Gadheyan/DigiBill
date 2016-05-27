@@ -24,7 +24,10 @@ private slots:
 
     void on_add_client_clicked();
 
-    void setTitleForWindow(QString& title);
+    void initializeTable();
+
+
+
 
 
     void disableButtons(const QItemSelection & selected, const QItemSelection & deselected);
@@ -34,7 +37,7 @@ private slots:
 
 private:
     Ui::client_table_view *ui;
-    QString window_title;
+
 };
 
 #endif // CLIENT_TABLE_VIEW_H

@@ -7,13 +7,18 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+#include "client_table_view.h"
 
 client_details::client_details(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::client_details)
 {
     ui->setupUi(this);
+
     add_items_to_countrycombobox();
+
+
+
 
 }
 
@@ -55,7 +60,18 @@ void client_details::on_pushButton_2_clicked()
     phone = ui->phone->text();
     website = ui->website->text();
     tin = ui->tin->text();
+    if(window_title=="Edit Info"){
+
+    //qDebug()<<window_title;
+        db.updateClient(company_name,country,contact_name,address,city,state,email,phone,website,tin,current_client_id);
+
+    }
+    else if(window_title=="Add Client"){
+
     db.insertIntoClient(company_name,country,contact_name,address,city,state,email,phone,website,tin);
+    }
+
+
     QMessageBox::information(
         this,
         tr("Saved"),
@@ -71,4 +87,36 @@ void client_details::on_pushButton_2_clicked()
 void client_details::on_cancel_button_clicked()
 {
     this->close();
+}
+
+
+void client_details::setTitleForWindow(const QString& title)
+{
+    window_title = title;
+    this->setWindowTitle(title);
+
+
+}
+
+void client_details::populateData(const QString& client_id){
+    current_client_id = client_id;
+
+
+    dbconnector db;
+    QStringList result = db.sqlExecute(client_id);
+
+    ui->company_name->setText(result[1]);
+    ui->contact_name->setText(result[2]);
+    ui->countrycombobox->setCurrentIndex(ui->countrycombobox->findText(result[3]));
+    ui->address->setText(result[4]);
+    ui->city->setText(result[5]);
+    ui->state->setText(result[6]);
+    ui->email->setText(result[7]);
+    ui->phone->setText(result[8]);
+    ui->website->setText(result[9]);
+    ui->tin->setText(result[10]);
+
+
+
+
 }
