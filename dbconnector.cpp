@@ -8,7 +8,7 @@
 #include <QtDebug>
 #include <QFileInfo>
 #include <QFile>
-
+#include <QStringList>
 
 
 
@@ -58,6 +58,7 @@ dbconnector::dbconnector()
                 qDebug() << "Table5 created!";
 
 }
+
 
 
 
@@ -184,3 +185,13 @@ bool dbconnector::insertIntoProduct(const QString& product_name,const QString& p
 
 }
 
+
+
+
+QStringList dbconnector::sqlExecute(const QString& query)
+{
+    QStringList list ;
+
+
+    return list;
+}

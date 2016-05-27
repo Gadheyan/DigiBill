@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include "client_details.h"
+#include <QStringList>
 
 client_table_view::client_table_view(QWidget *parent) :
     QDialog(parent),
@@ -28,9 +29,11 @@ client_table_view::client_table_view(QWidget *parent) :
             c, QHeaderView::Stretch);
     }
     ui->client_table->setSelectionBehavior(QAbstractItemView::SelectRows);//select the whole row instead of individual cell
-    ui->client_table->setShowGrid(false);
+    ui->client_table->setShowGrid(true);
     ui->client_table->setColumnHidden(0,true);
-
+    connect(ui->client_table->selectionModel(),SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            SLOT(disableButtons(const QItemSelection &, const QItemSelection &))
+           );
 
 }
 
@@ -44,8 +47,8 @@ client_table_view::~client_table_view()
 
 void client_table_view::on_client_table_doubleClicked(const QModelIndex &index)
 {
-    int row = index.row();
-    QString client_id =  index.sibling(row, 0).data().toString();
+    //int row = index.row();
+    //QString client_id =  index.sibling(row, 0).data().toString();
 
     client_details client_dialogue;
     client_dialogue.setModal(true);
@@ -63,4 +66,47 @@ void client_table_view::on_delete_client_clicked()
         qDebug()<<row;
 
     }
+}
+
+void client_table_view::on_edit_client_clicked()
+{
+    dbconnector db;
+
+    QStringList list =  db.sqlExecute("hai");
+    qDebug()<<list;
+
+
+}
+
+void client_table_view::on_add_client_clicked()
+{
+
+}
+
+
+void client_table_view::setTitleForWindow(QString& title){
+    window_title = title;
+
+}
+
+
+void client_table_view::disableButtons(const QItemSelection & selected, const QItemSelection & deselected){
+    QModelIndexList indexList = ui->client_table->selectionModel()->selectedRows();
+    int row=0;
+    foreach (QModelIndex index, indexList) {
+        row = row+1;
+        qDebug()<<row;
+
+    }
+    if(row>1)
+    {
+        ui->edit_client->setEnabled(false);
+
+    }
+    else
+       {
+        ui->edit_client->setEnabled(true);
+
+    }
+
 }

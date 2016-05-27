@@ -13,7 +13,7 @@ public:
     bool insertIntoProduct(const QString& product_name,const QString& price,const QString& company_id );
     bool insertIntoClient(const QString& company_name, const QString& country,const QString& contact_name,const QString& address,const QString& city,const QString& state,const QString& email,const QString& phone,const QString& website,const QString& tin);
     QSqlDatabase openDb(const QString &driver, const QString &name) const;
-
+    QStringList sqlExecute(const QString& query);
      ~dbconnector();
 
 private:
