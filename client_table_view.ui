@@ -97,7 +97,7 @@
        <item>
         <widget class="QPushButton" name="delete_client">
          <property name="text">
-          <string>Delete</string>
+          <string>Refresh</string>
          </property>
         </widget>
        </item>

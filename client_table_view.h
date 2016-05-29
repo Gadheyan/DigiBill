@@ -3,6 +3,9 @@
 
 #include <QDialog>
 #include <QItemSelection>
+#include <dbconnector.h>
+#include <QSqlQueryModel>
+#include <QSqlQuery>
 namespace Ui {
 class client_table_view;
 }
@@ -15,6 +18,8 @@ public:
     explicit client_table_view(QWidget *parent = 0);
     ~client_table_view();
 
+    void refreshTable();
+
 private slots:
     void on_client_table_doubleClicked(const QModelIndex &index);
 
@@ -26,10 +31,6 @@ private slots:
 
     void initializeTable();
 
-
-
-
-
     void disableButtons(const QItemSelection & selected, const QItemSelection & deselected);
 
 
@@ -37,6 +38,9 @@ private slots:
 
 private:
     Ui::client_table_view *ui;
+
+
+
 
 };
 

@@ -7,6 +7,7 @@
 #include "client_details.h"
 #include <QStringList>
 
+
 client_table_view::client_table_view(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::client_table_view)
@@ -31,6 +32,8 @@ client_table_view::~client_table_view()
 
 void client_table_view::initializeTable()
 {
+
+
     dbconnector db;
     QSqlQueryModel* modal = new QSqlQueryModel();
     QSqlQuery* qry = new QSqlQuery(db.digi_db) ;
@@ -48,6 +51,48 @@ void client_table_view::initializeTable()
     ui->client_table->setSelectionBehavior(QAbstractItemView::SelectRows);//select the whole row instead of individual cell
     ui->client_table->setShowGrid(true);
     ui->client_table->setColumnHidden(0,true);
+    qDebug()<<"Table Initialized";
+}
+
+
+void client_table_view::refreshTable()
+{
+
+
+
+    dbconnector db;
+    QSqlQueryModel* modal = new QSqlQueryModel();
+    QSqlQuery* qry = new QSqlQuery(db.digi_db) ;
+
+
+    qry->exec("select client_id,company_name,contact_name,address,email,phone from client_details");
+
+    int qrycount = 0;
+    while(qry->next()){
+        qrycount=qrycount+1;
+
+        for(int i=0;i<6;i++){//very important change limit according to column number
+            qDebug()<<"qry"<<qrycount<<"number"<<i<<qry->value(i).toString();
+        }
+
+
+    }
+
+    modal->setQuery(*qry);
+    ui->client_table->setModel(modal);
+
+
+
+
+    for (int c = 0; c < ui->client_table->horizontalHeader()->count(); ++c)
+    {
+        ui->client_table->horizontalHeader()->setSectionResizeMode(
+            c, QHeaderView::Stretch);
+    }
+    ui->client_table->setSelectionBehavior(QAbstractItemView::SelectRows);//select the whole row instead of individual cell
+    ui->client_table->setShowGrid(true);
+    ui->client_table->setColumnHidden(0,true);
+    qDebug()<<"Table Refreshed";
 }
 
 
@@ -72,9 +117,10 @@ void client_table_view::on_delete_client_clicked()
      int row;
     foreach (QModelIndex index, indexList) {
         row = index.row();
-        qDebug()<<row;
+       // qDebug()<<"deletefunction on client_table_view-row count"<<row;
 
     }
+    refreshTable();
 }
 
 void client_table_view::on_edit_client_clicked()

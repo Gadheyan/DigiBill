@@ -72,13 +72,22 @@ void client_details::on_pushButton_2_clicked()
     }
 
 
+
     QMessageBox::information(
         this,
         tr("Saved"),
         tr("Information has been saved.") );
 
 
+    client_table_view ctv;
+    ctv.refreshTable();
+
+
+
+
+
     this->close();
+
 
 
 
