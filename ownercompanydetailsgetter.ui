@@ -102,10 +102,64 @@
      <property name="bottomMargin">
       <number>30</number>
      </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Company Name</string>
+        <string>Address</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Website</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLineEdit" name="website"/>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="city"/>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Currency</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="email"/>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Additional Info</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Logo</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" rowspan="2">
+      <widget class="QTextEdit" name="address"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>state</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Phone</string>
        </property>
       </widget>
      </item>
@@ -116,59 +170,42 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="label_13">
-       <property name="text">
-        <string>TIN</string>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBox">
+       <property name="editable">
+        <bool>true</bool>
        </property>
       </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLineEdit" name="phone"/>
      </item>
      <item row="0" column="4">
       <widget class="QLineEdit" name="tin"/>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_7">
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_9">
        <property name="text">
-        <string>Country</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="comboBox"/>
-     </item>
-     <item row="1" column="3">
-      <widget class="QLabel" name="label_5">
-       <property name="text">
-        <string>Additional Info</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
-      <widget class="QLineEdit" name="additional_info"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Address</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>Currency</string>
+        <string>City</string>
        </property>
       </widget>
      </item>
      <item row="2" column="4">
-      <widget class="QComboBox" name="comboBox_currency"/>
-     </item>
-     <item row="3" column="3">
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Logo</string>
+      <widget class="QComboBox" name="comboBox_currency">
+       <property name="editable">
+        <bool>true</bool>
        </property>
       </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Company Name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="state"/>
      </item>
      <item row="3" column="4">
       <widget class="QPushButton" name="pushButton_3">
@@ -183,26 +220,6 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>City</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="city"/>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>state</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLineEdit" name="state"/>
-     </item>
      <item row="6" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
@@ -210,8 +227,22 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
-      <widget class="QLineEdit" name="email"/>
+     <item row="0" column="3">
+      <widget class="QLabel" name="label_13">
+       <property name="text">
+        <string>TIN</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLineEdit" name="additional_info"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Country</string>
+       </property>
+      </widget>
      </item>
      <item row="6" column="2">
       <widget class="QLabel" name="email_validation">
@@ -231,29 +262,6 @@
         <string/>
        </property>
       </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>Phone</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QLineEdit" name="phone"/>
-     </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="label_12">
-       <property name="text">
-        <string>Website</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QLineEdit" name="website"/>
-     </item>
-     <item row="2" column="1" rowspan="2">
-      <widget class="QTextEdit" name="address"/>
      </item>
     </layout>
    </item>
