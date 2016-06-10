@@ -19,6 +19,8 @@ client_table_view::client_table_view(QWidget *parent) :
     connect(ui->client_table->selectionModel(),SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             SLOT(disableButtons(const QItemSelection &, const QItemSelection &))
            );
+    ui->edit_client->setEnabled(false);
+
 
 }
 
@@ -62,7 +64,7 @@ void client_table_view::refreshTable()
 
     dbconnector db;
     QSqlQueryModel* modal = new QSqlQueryModel();
-    QSqlQuery* qry = new QSqlQuery(db.digi_db) ;
+    QSqlQuery* qry = new QSqlQuery(db.digi_db);
 
 
     qry->exec("select client_id,company_name,contact_name,address,email,phone from client_details");
@@ -71,9 +73,9 @@ void client_table_view::refreshTable()
     while(qry->next()){
         qrycount=qrycount+1;
 
-        for(int i=0;i<6;i++){//very important change limit according to column number
-            qDebug()<<"qry"<<qrycount<<"number"<<i<<qry->value(i).toString();
-        }
+       // for(int i=0;i<6;i++){//very important change limit according to column number
+            //qDebug()<<"qry"<<qrycount<<"number"<<i<<qry->value(i).toString();
+        //}
 
 
     }
@@ -107,8 +109,12 @@ void client_table_view::on_client_table_doubleClicked(const QModelIndex &index)
     edit_client.setTitleForWindow("Edit Info");
     edit_client.populateData(client_id);
     edit_client.setModal(true);
-    edit_client.exec();
+    int result =  edit_client.exec();
+    if(result == 1)
+    {
+        refreshTable();
 
+    }
 }
 
 void client_table_view::on_delete_client_clicked()
@@ -120,7 +126,7 @@ void client_table_view::on_delete_client_clicked()
        // qDebug()<<"deletefunction on client_table_view-row count"<<row;
 
     }
-    refreshTable();
+
 }
 
 void client_table_view::on_edit_client_clicked()
@@ -134,7 +140,13 @@ void client_table_view::on_edit_client_clicked()
     edit_client.setTitleForWindow("Edit Info");
     edit_client.populateData(client_id);
     edit_client.setModal(true);
-    edit_client.exec();
+    int result =  edit_client.exec();
+    if(result == 1)
+    {
+        refreshTable();
+
+    }
+
 
 
 
@@ -147,7 +159,13 @@ void client_table_view::on_add_client_clicked()
     client_details add_client;
     add_client.setTitleForWindow("Add Client");
     add_client.setModal(true);
-    add_client.exec();
+
+    int result =  add_client.exec();
+    if(result == 1)
+    {
+        refreshTable();
+
+    }
 }
 
 

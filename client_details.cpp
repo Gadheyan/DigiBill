@@ -7,7 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
-#include "client_table_view.h"
+
 
 client_details::client_details(QWidget *parent) :
     QDialog(parent),
@@ -79,14 +79,9 @@ void client_details::on_pushButton_2_clicked()
         tr("Information has been saved.") );
 
 
-    client_table_view ctv;
-    ctv.refreshTable();
-
-
-
-
 
     this->close();
+    this->setResult(QDialog::Accepted);
 
 
 
@@ -96,6 +91,7 @@ void client_details::on_pushButton_2_clicked()
 void client_details::on_cancel_button_clicked()
 {
     this->close();
+    this->setResult(QDialog::Rejected);
 }
 
 
@@ -129,3 +125,7 @@ void client_details::populateData(const QString& client_id){
 
 
 }
+
+
+
+

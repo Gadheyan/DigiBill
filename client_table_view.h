@@ -20,6 +20,7 @@ public:
 
     void refreshTable();
 
+
 private slots:
     void on_client_table_doubleClicked(const QModelIndex &index);
 
